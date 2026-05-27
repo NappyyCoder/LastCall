@@ -1,0 +1,3075 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #fff;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.viewport {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+  background: #fff;
+}
+
+.page-scale-wrap {
+  position: relative;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.page {
+  position: relative;
+  width: 1728px;
+  height: 2284px;
+  background: #fff;
+  overflow: visible;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.abs {
+  position: absolute;
+}
+
+/* Header
+   Logo SVGs (viewBoxes):
+     logo-bars.svg:    186.74 × 77.08  (ratio ≈ 2.422)
+     logo-text.svg:    176.09 × 73.86  (ratio ≈ 2.385)
+     logo-tagline.svg: 175.56 × 10.47  (ratio ≈ 16.77)
+   Each part uses an explicit height with width:auto so the natural ratio is preserved.
+*/
+.logo {
+  left: 40px;
+  top: 36px;
+  width: auto;
+  height: 76px;
+  z-index: 10;
+  display: block;
+  text-decoration: none;
+}
+
+.logo-composite {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 100%;
+}
+
+.logo-bars {
+  height: 64px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.logo-text {
+  height: 54px;
+  width: auto;
+  display: block;
+}
+
+.logo-tagline-img {
+  height: 8px;
+  width: auto;
+  display: block;
+}
+
+/* Search border pill — Figma node 80:42, black rounded frame behind the search */
+.search-border-pill {
+  left: 557px;
+  top: 38px;
+  width: 653px;
+  height: 82px;
+  background: #000;
+  border-radius: 54px;
+  z-index: 14;
+  pointer-events: none;
+  box-shadow: inset 0px 6px 4px 1px rgba(255, 255, 255, 0.18);
+}
+
+.search-wrap {
+  left: 561px;
+  top: 36px;
+  width: 644px;
+  z-index: 15;
+}
+
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border-radius: 54px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 6px 4px rgba(255, 255, 255, 0.06),
+    0 4px 18px rgba(0, 0, 0, 0.18);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.search-field.is-focused {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 6px 4px rgba(255, 255, 255, 0.06),
+    0 8px 28px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+
+.search-field.has-value {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.search-icon {
+  position: absolute;
+  left: 28px;
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+  transition: stroke 0.25s ease, transform 0.25s ease;
+}
+
+.search-field.is-focused .search-icon {
+  stroke: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
+.search-input {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0 56px 0 68px;
+  border: none;
+  border-radius: 54px;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #fff;
+  text-align: left;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+  transition: color 0.2s ease;
+}
+
+.search-field.is-focused .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.search-input::-webkit-search-cancel-button,
+.search-input::-webkit-search-decoration {
+  display: none;
+}
+
+.search-clear {
+  position: absolute;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.search-clear svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* Track of the Day badge */
+.track-of-day-badge {
+  left: 1442px;
+  top: 62px;
+  padding: 4px 16px;
+  background: #000;
+  border-radius: 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  white-space: nowrap;
+  z-index: 21;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.track-of-day-badge[hidden] {
+  display: block !important;
+  /* keep it in layout so position doesn't jump */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-clear:hover {
+  background: rgba(0, 0, 0, 0.12);
+  transform: scale(1.05);
+}
+
+.search-clear:active {
+  transform: scale(0.95);
+}
+
+.search-results {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 10px);
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px;
+  border-radius: 24px;
+  background: rgba(12, 12, 12, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+.search-results.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 16px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.search-result:hover,
+.search-result.is-active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-result:active {
+  transform: scale(0.99);
+}
+
+.search-result-art {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.search-result-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-result-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-result-artist {
+  font-size: 12px;
+  font-weight: 500;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+
+.search-result-section {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-empty {
+  padding: 18px 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+
+.search-hint {
+  padding: 10px 14px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.player-widget-wrap {
+  --player-width: 420px;
+  --player-height: 168px;
+  --disc-size: 168px;
+  --panel-overlap: 62px;
+
+  left: 1280px;
+  top: 22px;
+  width: var(--player-width);
+  height: var(--player-height);
+  z-index: 20;
+}
+
+.player-widget {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.player-disc {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--disc-size);
+  height: var(--disc-size);
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+  background: #111;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+.player-disc::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.player-disc img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.player-widget.is-playing .player-disc {
+  animation: player-disc-spin 4s linear infinite;
+}
+
+@keyframes player-disc-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.player-panel {
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  margin-left: calc(var(--panel-overlap) * -1);
+  background: #fff;
+  border-radius: calc(var(--player-height) / 2);
+  border: 1.5px solid rgba(0, 0, 0, 0.10);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.10);
+  padding:
+    20px 24px 16px calc(var(--disc-size) - var(--panel-overlap) + 18px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.player-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.player-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #000;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.player-artist {
+  font-size: 11px;
+  font-weight: 500;
+  color: #000;
+  letter-spacing: 0.04em;
+  margin-top: 3px;
+}
+
+.player-mute {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #bbb;
+  opacity: 0.85;
+}
+
+.player-mute:hover {
+  color: #666;
+}
+
+.player-mute .player-icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.player-mute .player-icon-muted {
+  display: none;
+}
+
+.player-mute.is-muted .player-icon-volume {
+  display: none;
+}
+
+.player-mute.is-muted .player-icon-muted {
+  display: block;
+}
+
+.player-progress {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: #e5e5e5;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.player-progress-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: #1a1a1a;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: width 0.1s linear;
+}
+
+.player-controls {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2px;
+  padding-left: 8px;
+}
+
+.player-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #111;
+  touch-action: manipulation;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.player-control::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
+
+.player-control svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.player-control:hover {
+  opacity: 0.55;
+}
+
+.player-control:active {
+  transform: scale(0.92);
+}
+
+.player-control:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.player-play svg {
+  width: 24px;
+  height: 24px;
+}
+
+.player-icon-pause {
+  display: none;
+}
+
+.player-widget.is-playing .player-icon-play {
+  display: none;
+}
+
+.player-widget.is-playing .player-icon-pause {
+  display: block;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+  color: #000;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.section-title-popular {
+  left: 216px;
+  top: 240px;
+}
+
+
+.section-underline {
+  width: 129px;
+  height: 1px;
+}
+
+.soundwave-popular {
+  display: none;
+}
+
+
+/* Carousels */
+.carousel-viewport {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+/* ─── Theme toggle button — always fixed, outside scaled page ─── */
+.theme-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
+.theme-icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Light mode: show moon, hide sun */
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-icon-moon {
+  display: block;
+}
+
+/* Dark mode: show sun, hide moon */
+.dark-mode .theme-icon-sun {
+  display: block;
+}
+
+.dark-mode .theme-icon-moon {
+  display: none;
+}
+
+/* ─── Sticky header ─── */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  padding: 0 72px 0 28px;
+  /* right padding avoids toggle overlap */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /* Slide up off-screen by default */
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background 0.3s ease,
+    border-color 0.3s ease;
+  pointer-events: none;
+}
+
+.sticky-header.is-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Compact logo inside sticky header */
+.sticky-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sticky-logo .logo-composite {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+}
+
+.sticky-logo .logo-bars {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.sticky-logo .logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+.sticky-logo .logo-text {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.sticky-logo .logo-tagline-img {
+  height: 7px;
+  width: auto;
+  display: block;
+}
+
+/* Arrow row — invisible on desktop (arrows are abs positioned); flex row on mobile */
+.carousel-arrow-row {
+  display: contents; /* no box — children participate in parent layout */
+}
+
+/* 4 cards × 220px + 3 gaps × 60px = 1060px, centered on 1728px page */
+.popular-viewport {
+  left: 334px;
+  top: 297px;
+  width: 1060px;
+  height: 360px;
+  z-index: 3;
+}
+
+
+.carousel-track {
+  display: flex;
+  gap: 60px;
+  transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+}
+
+/* Hidden SoundCloud Widget iframe — controls audio off-screen */
+#sc-widget {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  pointer-events: none;
+}
+
+.carousel-slide {
+  flex: 0 0 220px;
+  width: 220px;
+  overflow: visible;
+  position: relative;
+}
+
+.carousel-slide.search-hidden {
+  display: none;
+}
+
+.carousel-slide.search-highlight {
+  animation: search-highlight 1.2s ease;
+}
+
+@keyframes search-highlight {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.04);
+  }
+}
+
+.carousel-card-link {
+  display: block;
+  width: 220px;
+  height: 220px;
+  overflow: visible;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.carousel-card-link:hover {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+/* Play overlay (▶) — fades in on card hover */
+.vinyl-play-overlay {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.88);
+  border: 2.5px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.34, 1.5, 0.64, 1);
+  pointer-events: none;
+}
+
+.vinyl-play-overlay svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 3px;
+  fill: #fff;
+}
+
+.carousel-card-link:hover .vinyl-play-overlay,
+.carousel-card-link:focus-visible .vinyl-play-overlay,
+.vinyl-card.is-popped .vinyl-play-overlay {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Small "Open on SoundCloud" link beneath the card */
+.card-sc-link {
+  position: absolute;
+  bottom: 42px;
+  right: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background: #fff;
+  border: 1.5px solid #000;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  z-index: 4;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.card-sc-link svg {
+  width: 10px;
+  height: 10px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.carousel-slide:hover .card-sc-link,
+.carousel-slide:focus-within .card-sc-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-sc-link:hover {
+  background: #000;
+  color: #fff;
+}
+
+.vinyl-card {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  overflow: visible;
+  cursor: pointer;
+}
+
+/* Playing badge — shows above active card */
+.vinyl-card.is-popped::after {
+  content: '▶ PLAYING';
+  position: absolute;
+  top: -22px;
+  left: 0;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  color: #000;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.vinyl-sleeve {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #000;
+  box-shadow: 5px 5px 0 #000;
+  transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
+    box-shadow 0.25s ease;
+  pointer-events: none;
+}
+
+.carousel-card-link:hover .vinyl-sleeve,
+.carousel-card-link:focus-visible .vinyl-sleeve,
+.vinyl-card.is-popped .vinyl-sleeve {
+  box-shadow: 7px 7px 0 #000;
+}
+
+/* .vinyl-record removed — blank disc image no longer used */
+
+/* Cover slides LEFT to reveal record */
+.carousel-card-link:hover .vinyl-sleeve,
+.carousel-card-link:focus-visible .vinyl-sleeve,
+.vinyl-card.is-popped .vinyl-sleeve {
+  transform: translateX(-10px);
+}
+
+.carousel-label {
+  margin-top: 14px;
+  font-size: 15px;
+  color: #000;
+  line-height: 1.25;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.track-label-bold {
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.track-label-italic {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* Carousel arrows
+   Viewport: left=100px, right=1628px (width=1528)
+   Each arrow is 52px. 24px gap from viewport edge and 24px gap from page edge.
+   Left arrow:  page-edge(0) + 24px = left:24px  → right-edge:76px → gap to viewport:100-76=24 ✓
+   Right arrow: viewport-right(1628) + 24px = left:1652px → right-edge:1704 → page-edge gap:24 ✓
+*/
+.arrow {
+  width: 52px;
+  height: 52px;
+  z-index: 15;
+}
+
+.arrow-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-btn img {
+  width: 52px;
+  height: 52px;
+  display: block;
+  pointer-events: none;
+}
+
+.arrow-btn:hover:not(:disabled) {
+  opacity: 0.75;
+}
+
+.arrow-btn:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Centered on the 290px vinyl card vertically */
+/* viewport left=334, right=1394; arrows 52px wide, 24px gap each side
+   left arrow:  334 - 24 - 52 = 258px
+   right arrow: 1394 + 24     = 1418px */
+.arrow-left-top {
+  left: 258px;
+  top: 416px;
+  transform: rotate(-90deg);
+}
+
+
+.arrow-right-top {
+  left: 1418px;
+  top: 416px;
+  transform: rotate(90deg);
+}
+
+
+.arrow-btn:hover:not(:disabled).arrow-left-top {
+  transform: rotate(-90deg) scale(1.1);
+}
+
+.arrow-btn:hover:not(:disabled).arrow-right-top {
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Dividers */
+
+.divider-bar {
+  left: -5px;
+  top: 680px;
+  width: 1739px;
+  height: 41px;
+  background: conic-gradient(from 90deg,
+      #000 0%,
+      #060606 3.8462%,
+      #0d0d0d 7.6923%,
+      #1a1a1a 15.385%,
+      #333 30.769%,
+      #4d4d4d 46.154%,
+      #666 61.538%,
+      #4d4d4d 71.154%,
+      #333 80.769%,
+      #1a1a1a 90.385%,
+      #0d0d0d 95.192%,
+      #060606 97.596%,
+      #000 100%);
+}
+
+.lights-off-top {
+  left: 818px;
+  top: 693px;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+
+
+/* LAST CALL watermark repeating text */
+.lc-watermark {
+  font-size: 96px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.38);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+  line-height: 1;
+}
+
+.lc-wm-1 {
+  left: -474px;
+  top: 760px;
+}
+
+.lc-wm-2 {
+  left: -487px;
+  top: 877px;
+}
+
+.lc-wm-3 {
+  left: -491px;
+  top: 994px;
+}
+
+.lc-wm-4 {
+  left: 706px;
+  top: 760px;
+}
+
+.lc-wm-5 {
+  left: 706px;
+  top: 877px;
+}
+
+.lc-wm-6 {
+  left: 720px;
+  top: 994px;
+}
+
+.lc-wm-7 {
+  left: 1886px;
+  top: 760px;
+}
+
+.lc-wm-8 {
+  left: 1886px;
+  top: 877px;
+}
+
+.lc-wm-9 {
+  left: 1910px;
+  top: 994px;
+  color: rgba(0, 0, 0, 0.10);
+}
+
+
+/* About section background (full-bleed dark image with monster) */
+.about-section-bg {
+  left: -20px;
+  top: 400px;
+  width: 1768px;
+  height: 1210px;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.about-section-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Face illustration — over the about section, matching Figma node 93:21 */
+/* ── Monster soundwave visualiser ── */
+/* ── Monster soundwave canvas ── */
+.monster-soundwave {
+  left: 0;
+  top: 600px;
+  width: 1728px;
+  height: 480px;
+  z-index: 4;
+  pointer-events: none;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .monster-soundwave { display: none; }
+}
+
+.face-illustration {
+  left: 610px;
+  top: 740px;
+  width: 480px;
+  height: 566px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.face-illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* About */
+.about-bg {
+  left: 0;
+  top: 1251px;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+/* Josh sketch – left side of about section */
+.josh-sketch {
+  left: 48px;
+  top: 1251px;
+  width: 828px;
+  height: 689px;
+  z-index: 5;
+  pointer-events: none;
+  border: 3px solid #000;
+  background: #fff;
+  transform: scaleY(-1) rotate(180deg);
+  transform-origin: center center;
+}
+
+.josh-sketch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* About panel – right side. Enhanced bio layout. */
+.about-panel {
+  position: absolute;
+  left: 918px;
+  top: 1251px;
+  width: 810px;
+  height: 603px;
+  background: #fff;
+  border: 3px solid #000;
+  z-index: 5;
+  padding: 28px 48px 28px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* subtle paper texture using layered gradients */
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(0, 0, 0, 0.025) 0%, transparent 35%),
+    radial-gradient(circle at 88% 90%, rgba(0, 0, 0, 0.025) 0%, transparent 40%);
+}
+
+/* Header row: heading + live status pill */
+.about-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.about-headline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-brand-heading {
+  font-size: 76px;
+  font-weight: 900;
+  color: #000;
+  line-height: 0.78;
+  letter-spacing: 0.048em;
+  margin: 0;
+}
+
+.about-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #000;
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-eyebrow-dot {
+  display: inline-block;
+  color: #000;
+  opacity: 0.6;
+}
+
+/* "ON THE DECKS" live status pill */
+.about-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1.5px solid #000;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: #fff;
+  margin-top: 6px;
+}
+
+.about-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #000;
+  animation: status-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
+
+.soundwave-panel {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 14px 0 16px;
+  opacity: 0.85;
+}
+
+.about-text {
+  font-size: 16px;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+
+.about-text em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.about-text strong {
+  font-weight: 700;
+  font-style: italic;
+  color: #000;
+}
+
+/* Stats row */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 14px 0;
+  border-top: 1.5px solid #000;
+  border-bottom: 1.5px solid #000;
+  gap: 8px;
+}
+
+.about-stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.about-stat-num {
+  font-size: 30px;
+  font-weight: 900;
+  color: #000;
+  line-height: 1;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.about-stat-num sup {
+  font-size: 16px;
+  vertical-align: super;
+  font-weight: 800;
+}
+
+.about-stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #000;
+  opacity: 0.75;
+}
+
+/* Genre tag chips */
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+.about-tags li {
+  padding: 5px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #000;
+  background: transparent;
+  border: 1.5px solid #000;
+  border-radius: 999px;
+  text-transform: uppercase;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.about-tags li:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Action buttons row (Latest Mix + Book Now) */
+.about-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.about-btn-ghost {
+  background: transparent;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.about-btn-ghost:hover {
+  background: #000;
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.about-btn-solid,
+.book-now-btn {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  font-size: 22px;
+  padding: 11px 30px;
+  margin-left: auto;
+}
+
+.about-btn-solid:hover,
+.book-now-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.about-btn-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  display: block;
+}
+
+.about-socials {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1.5px solid rgba(0, 0, 0, 0.18);
+}
+
+.about-socials .social-link img {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+.social-link {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social-link:hover {
+  opacity: 0.75;
+  transform: scale(1.06);
+}
+
+/* Footer */
+.footer-bg {
+  left: 0;
+  top: 1940px;
+  width: 1728px;
+  height: 344px;
+  background: #000;
+}
+
+.footer-brand {
+  left: 78px;
+  top: 1978px;
+  width: 196px;
+  font-size: 48px;
+  font-weight: 900;
+  color: #fff;
+  line-height: normal;
+}
+
+.footer-brand-call {
+  line-height: 99.41%;
+}
+
+.footer-soundcloud-label {
+  left: 80px;
+  top: 2072px;
+  width: 169px;
+  font-size: 16px;
+  font-weight: 100;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-link-home {
+  left: 591px;
+  top: 2016px;
+  width: 90px;
+  height: 40px;
+}
+
+.footer-nav-title {
+  left: 592px;
+  top: 1980px;
+  width: 283px;
+  font-size: 15px;
+  font-weight: 200;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-booking-title {
+  left: 864px;
+  top: 1976px;
+  width: 95px;
+  font-size: 15px;
+  font-weight: 200;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-listen-title {
+  left: 1121px;
+  top: 1980px;
+  width: 283px;
+  font-size: 15px;
+  font-weight: 200;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-link {
+  font-size: 15px;
+  font-weight: 200;
+  color: #fff;
+  line-height: 99.41%;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-link:hover,
+.footer-link-block:hover {
+  opacity: 0.7;
+}
+
+.footer-link-block {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-soundcloud-box {
+  left: 1127px;
+  top: 2010px;
+  width: 176px;
+  height: 122px;
+  border: 1px solid #fff;
+  background: #000;
+  display: block;
+  transition: background 0.2s ease;
+}
+
+.footer-soundcloud-box:hover {
+  background: #111;
+}
+
+.footer-link-mixes {
+  left: 591px;
+  top: 2049px;
+  width: 116px;
+  height: 41px;
+}
+
+.footer-link-shows {
+  left: 591px;
+  top: 2081px;
+  width: 133px;
+  height: 39px;
+}
+
+.footer-link-about {
+  left: 592px;
+  top: 2118px;
+  width: 133px;
+  height: 39px;
+}
+
+.footer-link-book {
+  left: 867px;
+  top: 2015px;
+  width: 90px;
+  height: 40px;
+}
+
+.footer-link-residencies {
+  left: 869px;
+  top: 2050px;
+  width: 90px;
+  height: 40px;
+}
+
+.footer-link-events {
+  left: 869px;
+  top: 2082px;
+  width: 132px;
+  height: 38px;
+}
+
+.footer-soundcloud-box-title {
+  left: 1136px;
+  top: 2021px;
+  width: 127px;
+  font-size: 15px;
+  font-weight: 900;
+  font-style: italic;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-soundcloud-box-sub {
+  left: 1136px;
+  top: 2081px;
+  width: 127px;
+  font-size: 15px;
+  font-weight: 200;
+  font-style: italic;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-mix-drop {
+  left: 1126px;
+  top: 2138px;
+  width: 132px;
+  height: 38px;
+  font-size: 15px;
+  font-weight: 200;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-social-home {
+  left: 1538px;
+  top: 2134px;
+  width: 36px;
+  height: 36px;
+}
+
+.footer-social-soundcloud {
+  left: 1592px;
+  top: 2143px;
+  width: 31px;
+  height: 20px;
+}
+
+.footer-social-instagram {
+  left: 1641px;
+  top: 2137px;
+  width: 33px;
+  height: 33px;
+}
+
+.footer-social-home img,
+.footer-social-soundcloud img,
+.footer-social-instagram img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.footer-divider {
+  left: 74px;
+  top: 2211px;
+  width: 1604px;
+  height: 1px;
+}
+
+.footer-divider img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.footer-copyright {
+  left: 97px;
+  top: 2220px;
+  width: 552px;
+  font-size: 12px;
+  font-weight: 200;
+  color: #fff;
+  line-height: 99.41%;
+}
+
+.footer-copyright-icon {
+  left: 74px;
+  top: 2234px;
+  width: 14px;
+  height: 14px;
+}
+
+.footer-copyright-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.footer-tagline {
+  left: 1396px;
+  top: 2224px;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+  color: #fff;
+  line-height: 99.41%;
+  white-space: pre;
+}
+
+/* ==========================================================================
+   RESPONSIVE — TABLET (768px – 1199px)
+   The JS scaling handles this range; just ensure the viewport wrapper
+   is centred and doesn't overflow.
+   ========================================================================== */
+@media (max-width: 1199px) {
+  .viewport {
+    justify-content: flex-start;
+    overflow-x: hidden;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE — TABLET (768px – 1024px)
+   JS still scales the 1728px canvas, but fixed/out-of-flow elements need
+   their own adjustments since they sit outside the scale wrapper.
+   ========================================================================== */
+@media (max-width: 1024px) {
+  /* Sticky header: tighten right padding so theme toggle doesn't clip */
+  .sticky-header {
+    height: 52px;
+    padding: 0 60px 0 20px;
+  }
+
+  .sticky-logo .logo-composite { height: 36px; }
+  .sticky-logo .logo-bars      { height: 32px; }
+  .sticky-logo .logo-text      { height: 26px; }
+  .sticky-logo .logo-tagline-img { height: 6px; }
+
+  /* Theme toggle: nudge slightly closer to edge */
+  .theme-toggle {
+    bottom: 20px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE — MOBILE (< 768px)
+   JS adds .is-mobile to <body>, removing its scale transform.
+   CSS takes over with a natural flow layout.
+   ========================================================================== */
+@media (max-width: 767px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .viewport {
+    display: block;
+    overflow-x: hidden;
+  }
+
+  /* JS leaves width/height blank for mobile; ensure wrap fills screen */
+  .page-scale-wrap {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Switch page from fixed-px to natural flow */
+  .page {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Reset ALL absolute positioning back to flow */
+  .abs {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* ---- STICKY HEADER (fixed, lives outside scaled wrapper) ---- */
+  .sticky-header {
+    height: 50px !important;
+    padding: 0 56px 0 16px !important;
+  }
+
+  .sticky-logo .logo-composite { height: 32px !important; }
+  .sticky-logo .logo-bars      { height: 28px !important; }
+  .sticky-logo .logo-text      { height: 22px !important; }
+  .sticky-logo .logo-tagline-img { height: 5px !important; }
+
+  /* ---- LOGO ---- */
+  .logo {
+    height: auto !important;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo-composite {
+    height: 56px !important;
+  }
+
+  .logo-bars {
+    height: 46px !important;
+  }
+
+  .logo-text {
+    height: 40px !important;
+  }
+
+  .logo-tagline-img {
+    height: 8px !important;
+  }
+
+  /* ---- SEARCH ---- */
+  .search-border-pill {
+    display: none !important;
+  }
+
+  .search-wrap {
+    width: calc(100% - 32px) !important;
+    margin: 14px 16px 0;
+  }
+
+  /* ---- PLAYER ---- */
+  .track-of-day-badge {
+    display: none !important;
+  }
+
+  .theme-toggle {
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+    right: calc(14px + env(safe-area-inset-right, 0px)) !important;
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .player-widget-wrap {
+    --player-width: 100%;
+    --player-height: 130px;
+    --disc-size: 130px;
+    --panel-overlap: 52px;
+    width: calc(100% - 32px) !important;
+    height: var(--player-height) !important;
+    margin: 16px 16px 0;
+  }
+
+  /* Allow title to wrap rather than truncate on narrow screens */
+  .player-title {
+    max-width: 100% !important;
+    white-space: normal !important;
+    font-size: 14px !important;
+    line-height: 1.3 !important;
+  }
+
+  /* ---- SEARCH (inside player area, not hidden) ---- */
+  .search-field {
+    height: 52px !important;
+  }
+
+  .search-input {
+    font-size: 18px !important;
+    padding: 0 46px 0 54px !important;
+  }
+
+  .search-icon {
+    left: 18px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* ---- SECTION TITLES ---- */
+  .section-title {
+    font-size: 18px !important;
+    padding: 28px 16px 6px !important;
+    font-style: italic;
+    font-weight: 900;
+  }
+
+  .soundwave-section {
+    display: none !important;
+  }
+
+  /* ---- CAROUSELS ---- */
+  .popular-viewport {
+    width: 100% !important;
+    height: auto !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px 20px;
+    /* hide scrollbar but keep functionality */
+    scrollbar-width: none;
+  }
+
+  .popular-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* On mobile the carousels use native CSS scroll, not JS translate */
+  .carousel-track {
+    transform: none !important;
+    width: max-content;
+    gap: 20px !important;
+    padding-right: 16px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 165px !important;
+    width: 165px !important;
+    scroll-snap-align: start;
+  }
+
+  .carousel-card-link {
+    width: 165px !important;
+    height: 165px !important;
+    transform: none !important;
+  }
+
+  .carousel-card-link:hover {
+    transform: none !important;
+  }
+
+  .vinyl-card {
+    width: 165px !important;
+    height: 165px !important;
+  }
+
+  .vinyl-sleeve {
+    width: 165px !important;
+    height: 165px !important;
+  }
+
+  /* .vinyl-record mobile override removed */
+
+  .carousel-label {
+    font-size: 12px !important;
+    margin-top: 8px !important;
+  }
+
+  .track-label-bold {
+    font-size: 12px !important;
+  }
+
+  .track-label-italic {
+    font-size: 11px !important;
+  }
+
+  /* ---- CAROUSEL ARROWS (mobile — shown as centred row under carousel) ---- */
+  .carousel-arrow-row {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 24px !important;
+    padding: 10px 0 4px !important;
+    width: 100% !important;
+  }
+
+  .arrow {
+    display: flex !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .arrow-btn img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .arrow-left-top  { transform: rotate(-90deg) !important; }
+  .arrow-right-top { transform: rotate(90deg)  !important; }
+
+  .arrow-btn:hover:not(:disabled).arrow-left-top,
+  .arrow-btn:hover:not(:disabled).arrow-right-top {
+    transform: rotate(-90deg) scale(1.1) !important;
+  }
+  .arrow-btn:hover:not(:disabled).arrow-right-top {
+    transform: rotate(90deg) scale(1.1) !important;
+  }
+
+  /* ---- DIVIDERS / DECORATIVE ---- */
+  .divider-bar,
+  .lights-off-top,
+  .lc-watermark,
+  .about-bg {
+    display: none !important;
+  }
+
+  /* ---- ABOUT SECTION ---- */
+  .about-section-bg {
+    width: 140% !important;
+    height: 440px !important;
+    top: 0 !important;
+    left: -20% !important;
+    overflow: hidden;
+    margin-bottom: -200px !important;
+    z-index: 1 !important;
+  }
+
+  .about-section-bg img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 55% 100% !important;
+  }
+
+  /* Face illustration — sized to match body crop so head lines up */
+  .face-illustration {
+    display: flex !important;
+    justify-content: center !important;
+    width: 200px !important;
+    height: 240px !important;
+    /* negative bottom pulls josh-sketch under the face */
+    margin: 0 auto -40px !important;
+    position: relative !important;
+    z-index: 5 !important;
+    pointer-events: none !important;
+    overflow: visible !important;
+  }
+
+  .face-illustration img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+  }
+
+  .about-brand-heading {
+    font-size: 64px !important;
+    line-height: 0.78 !important;
+    padding: 32px 16px 12px !important;
+    text-align: left;
+  }
+
+  .josh-sketch {
+    width: 100% !important;
+    height: 360px !important;
+    overflow: hidden;
+    transform: scaleX(-1) !important;
+    position: relative !important;
+    z-index: 3 !important;
+  }
+
+  .josh-sketch img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    /* Centre on Josh's face/upper body so nothing critical is cropped */
+    object-position: center 15% !important;
+  }
+
+  .about-panel {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    z-index: 4 !important;
+    border: none !important;
+    padding: 28px 20px 32px !important;
+  }
+
+  .about-panel-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .about-eyebrow {
+    font-size: 10px !important;
+    letter-spacing: 0.18em !important;
+  }
+
+  .about-status {
+    align-self: flex-start !important;
+    margin-top: 0 !important;
+  }
+
+  .soundwave-panel {
+    max-width: 100% !important;
+    margin: 10px 0 14px !important;
+  }
+
+  .about-text {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 12px 0 !important;
+    gap: 4px !important;
+  }
+
+  .about-stat-num {
+    font-size: 24px !important;
+  }
+
+  .about-stat-label {
+    font-size: 8px !important;
+  }
+
+  .about-tags li {
+    font-size: 9px !important;
+    padding: 4px 10px !important;
+  }
+
+  .about-actions {
+    flex-direction: column-reverse !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
+
+  .about-btn,
+  .about-btn-solid,
+  .book-now-btn {
+    font-size: 18px !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 12px 20px !important;
+  }
+
+  .about-socials {
+    margin-top: 20px !important;
+    justify-content: center;
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  /* ---- FOOTER ---- */
+  /* All footer elements lose their absolute position.
+     They stack in DOM order over a black background. */
+  .footer-bg {
+    background: #000 !important;
+    width: 100% !important;
+    height: 8px !important;
+    /* thin top edge of the black section */
+    margin-top: 0;
+  }
+
+  .footer-brand,
+  .footer-brand-call,
+  .footer-soundcloud-label,
+  .footer-nav-title,
+  .footer-booking-title,
+  .footer-listen-title,
+  .footer-soundcloud-box-title,
+  .footer-soundcloud-box-sub,
+  .footer-mix-drop,
+  .footer-copyright,
+  .footer-tagline {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  .footer-link {
+    background: #000 !important;
+    color: #fff !important;
+    display: block;
+    padding: 4px 0 !important;
+  }
+
+  .footer-link-block {
+    background: #000 !important;
+    color: #fff !important;
+    display: block;
+  }
+
+  .footer-brand {
+    font-size: 42px !important;
+    padding: 36px 20px 0 !important;
+    line-height: 1 !important;
+  }
+
+  .footer-soundcloud-label {
+    font-size: 13px !important;
+    padding: 10px 20px 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  .footer-nav-title {
+    font-size: 15px !important;
+    font-weight: 200 !important;
+    padding: 28px 20px 8px !important;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-link-home,
+  .footer-link-mixes,
+  .footer-link-shows,
+  .footer-link-about,
+  .footer-link-book,
+  .footer-link-residencies,
+  .footer-link-events,
+  .footer-mix-drop {
+    font-size: 15px !important;
+    padding: 4px 20px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .footer-booking-title {
+    font-size: 15px !important;
+    font-weight: 200 !important;
+    padding: 20px 20px 8px !important;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-listen-title {
+    font-size: 15px !important;
+    font-weight: 200 !important;
+    padding: 20px 20px 8px !important;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-soundcloud-box {
+    width: calc(100% - 40px) !important;
+    height: 100px !important;
+    margin: 0 20px 4px !important;
+    display: block !important;
+  }
+
+  .footer-soundcloud-box-title {
+    padding: 0 20px !important;
+    font-size: 15px !important;
+  }
+
+  .footer-soundcloud-box-sub {
+    padding: 6px 20px 0 !important;
+    font-size: 14px !important;
+    display: block !important;
+  }
+
+  .footer-mix-drop {
+    padding: 4px 20px !important;
+  }
+
+  /* Social row */
+  .footer-social-home,
+  .footer-social-soundcloud,
+  .footer-social-instagram {
+    display: inline-block !important;
+    width: 32px !important;
+    height: 32px !important;
+    margin: 20px 12px 0 20px !important;
+    background: transparent !important;
+  }
+
+  .footer-social-soundcloud,
+  .footer-social-instagram {
+    margin-left: 12px !important;
+    margin-top: 20px !important;
+  }
+
+  .footer-copyright-icon {
+    display: none !important;
+  }
+
+  .footer-divider {
+    width: calc(100% - 40px) !important;
+    height: 1px !important;
+    margin: 24px 20px 12px !important;
+    background: rgba(255, 255, 255, 0.2);
+    display: block !important;
+  }
+
+  .footer-divider img {
+    display: none !important;
+  }
+
+  .footer-copyright {
+    font-size: 12px !important;
+    padding: 0 20px !important;
+    width: auto !important;
+    opacity: 0.6;
+  }
+
+  .footer-tagline {
+    font-size: 16px !important;
+    padding: 8px 20px 32px !important;
+    white-space: normal !important;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+}
+
+/* ═══════════════════════════════════════════
+   BOOKING MODAL
+   ═══════════════════════════════════════════ */
+
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.booking-modal[hidden] {
+  display: none;
+}
+
+/* semi-transparent backdrop */
+.booking-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: bf-fade-in 0.25s ease;
+}
+
+/* card */
+.booking-card {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 3px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  border-radius: 4px;
+  padding: 48px 44px 40px;
+  animation: bf-slide-up 0.3s cubic-bezier(0.34, 1.35, 0.64, 1);
+  scroll-behavior: smooth;
+}
+
+@keyframes bf-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bf-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* close button */
+.booking-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  color: #000;
+}
+
+.booking-close:hover {
+  background: #000;
+  color: #fff;
+}
+
+.booking-close svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* header */
+.booking-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  color: rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.booking-title {
+  font-size: 42px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.booking-subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.55);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* form layout */
+.bf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.bf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.bf-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.bf-input {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #000;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #000;
+  outline: none;
+  transition: border-color 0.2s ease;
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.bf-input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.bf-input:focus {
+  border-bottom-color: #000;
+  border-bottom-width: 3px;
+}
+
+.bf-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  padding-right: 28px;
+}
+
+.bf-textarea {
+  resize: vertical;
+  min-height: 96px;
+  border: 2px solid #000;
+  border-radius: 2px;
+  padding: 12px 14px;
+}
+
+.bf-submit {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  margin-top: 8px;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.bf-submit:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.bf-submit:active {
+  transform: translateY(0);
+}
+
+/* success state */
+.booking-success {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.booking-success-icon {
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.booking-success-title {
+  font-size: 36px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: #000;
+  margin-bottom: 14px;
+}
+
+.booking-success-msg {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  .booking-card {
+    padding: 36px 20px calc(28px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  .bf-row {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-title {
+    font-size: 30px;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   DARK MODE
+   Applied via <html class="dark-mode">
+   ═══════════════════════════════════════════ */
+
+/* Smooth transitions when switching themes */
+html,
+body,
+.viewport,
+.page,
+.player-panel,
+.about-panel,
+.josh-sketch,
+.search-results,
+.section-title,
+.carousel-label,
+.track-label-bold,
+.track-label-italic,
+.vinyl-sleeve,
+.card-sc-link,
+.about-eyebrow,
+.about-status,
+.about-status-dot,
+.about-stat-value,
+.about-stat-label,
+.about-tags li,
+.about-actions a,
+.about-actions button,
+.player-title,
+.player-artist,
+.lc-watermark,
+.logo-bars,
+.logo-text,
+.logo-tagline-img,
+.search-result-item,
+.theme-toggle {
+  transition:
+    background-color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease !important;
+}
+
+/* ── Base backgrounds ── */
+html.dark-mode,
+html.dark-mode body,
+html.dark-mode .viewport {
+  background: #111 !important;
+}
+
+html.dark-mode .page {
+  background: #111 !important;
+}
+
+/* ── Logo: invert black SVGs to white ── */
+html.dark-mode .logo-bars,
+html.dark-mode .logo-text,
+html.dark-mode .logo-tagline-img {
+  filter: invert(1);
+}
+
+/* ── Section titles ── */
+html.dark-mode .section-title {
+  color: #f0f0f0;
+}
+
+/* ── Carousel: labels, cards, vinyl border/shadow ── */
+
+/* Section heading above cards */
+html.dark-mode .section-title,
+html.dark-mode .section-title-popular {
+  color: #fff !important;
+}
+
+/* Vinyl card — dark bg so artwork pops off the dark monster texture */
+html.dark-mode .vinyl-card {
+  background: #1c1c1c !important;
+}
+
+/* Track labels */
+html.dark-mode .carousel-label {
+  color: #fff !important;
+}
+
+html.dark-mode .track-label-bold {
+  color: #fff !important;
+}
+
+html.dark-mode .track-label-italic {
+  color: rgba(255, 255, 255, 0.6) !important;
+  opacity: 1 !important;
+}
+
+/* Vinyl sleeve border and shadow */
+html.dark-mode .vinyl-sleeve {
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.25);
+}
+
+html.dark-mode .carousel-card-link:hover .vinyl-sleeve,
+html.dark-mode .carousel-card-link:focus-visible .vinyl-sleeve,
+html.dark-mode .vinyl-card.is-popped .vinyl-sleeve {
+  box-shadow: 7px 7px 0 rgba(255, 255, 255, 0.35);
+}
+
+html.dark-mode .vinyl-card.is-popped::after {
+  color: #fff !important;
+}
+
+/* Carousel hover lift stays visible */
+html.dark-mode .carousel-card-link:hover {
+  filter: brightness(1.08);
+}
+
+html.dark-mode .card-sc-link {
+  background: #1e1e1e;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #f0f0f0;
+}
+
+html.dark-mode .card-sc-link:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+/* ── LAST CALL watermarks ── */
+html.dark-mode .lc-watermark {
+  color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ── Player widget ── */
+html.dark-mode .player-panel {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+}
+
+html.dark-mode .player-title {
+  color: #f0f0f0;
+}
+
+html.dark-mode .player-artist {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+html.dark-mode .player-mute {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html.dark-mode .player-mute:hover {
+  color: #f0f0f0;
+}
+
+html.dark-mode .player-progress {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+html.dark-mode .player-progress-fill {
+  background: #f0f0f0;
+}
+
+html.dark-mode .player-btn {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+html.dark-mode .player-btn:hover {
+  color: #fff;
+}
+
+/* ── Search ── */
+html.dark-mode .search-results {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+html.dark-mode .search-result-item {
+  color: #f0f0f0;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark-mode .search-result-item:hover,
+html.dark-mode .search-result-item[aria-selected="true"] {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+html.dark-mode .search-result-empty {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Josh sketch (image frame) ── */
+html.dark-mode .josh-sketch {
+  background: #1c1c1c !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ── About panel ── */
+html.dark-mode .about-panel {
+  background: #1c1c1c !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+html.dark-mode .about-brand-heading,
+html.dark-mode .about-headline {
+  color: #f0f0f0;
+}
+
+html.dark-mode .about-eyebrow {
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+html.dark-mode .about-eyebrow-dot {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+html.dark-mode .about-status {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+html.dark-mode .about-text,
+html.dark-mode .about-text p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+html.dark-mode .about-stats {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark-mode .about-stats li {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* stat number — correct class is about-stat-num */
+html.dark-mode .about-stat-num {
+  color: #f0f0f0;
+}
+
+html.dark-mode .about-stat-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html.dark-mode .about-text strong {
+  color: #f0f0f0;
+}
+
+html.dark-mode .about-status {
+  background: #2a2a2a;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+html.dark-mode .about-status-dot {
+  background: #4ade80;
+}
+
+html.dark-mode .about-eyebrow-dot {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+html.dark-mode .about-tags li {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+html.dark-mode .about-tags li:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ghost button */
+html.dark-mode .about-btn-ghost {
+  color: #f0f0f0;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+html.dark-mode .about-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: #fff;
+}
+
+/* solid / book-now button — invert to stay legible */
+html.dark-mode .about-btn-solid,
+html.dark-mode .book-now-btn {
+  background: #f0f0f0;
+  color: #000;
+  border-color: #f0f0f0;
+}
+
+html.dark-mode .about-btn-solid:hover,
+html.dark-mode .book-now-btn:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+html.dark-mode .about-socials {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Sticky header in dark mode ── */
+html.dark-mode .sticky-header {
+  background: rgba(17, 17, 17, 0.92);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .sticky-logo .logo-bars,
+html.dark-mode .sticky-logo .logo-text,
+html.dark-mode .sticky-logo .logo-tagline-img {
+  filter: invert(1);
+}
+
+/* ── Toggle button in dark mode ── */
+html.dark-mode .theme-toggle {
+  background: #222;
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #f0f0f0;
+}
+
+/* ── Track of the day badge ── */
+html.dark-mode .track-of-day-badge {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f0f0f0;
+}
+
+/* ── Carousel arrows — invert black SVG to white ── */
+html.dark-mode .arrow-btn img {
+  filter: invert(1);
+}
+
+/* ── Player controls ── */
+html.dark-mode .player-control {
+  color: #f0f0f0;
+}
+
+html.dark-mode .player-control:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.6);
+}
+
+html.dark-mode .player-progress {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+html.dark-mode .player-progress-fill {
+  background: #f0f0f0;
+}
+
+/* disc center hole */
+html.dark-mode .player-disc::after {
+  background: #111;
+}
+
+/* ── Divider bar — add slight glow so it reads on dark bg ── */
+html.dark-mode .divider-bar {
+  opacity: 0.55;
+}
+
+/* ── Section-title on dark page bg ── */
+html.dark-mode .section-title-popular {
+  color: #f0f0f0;
+}
+
+/* ── Social icons inside about panel (if black) ── */
+html.dark-mode .about-socials .social-link img {
+  filter: invert(1);
+}
+
+/* ── Booking modal ── */
+html.dark-mode .booking-card {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 8px 8px 0 rgba(255, 255, 255, 0.2);
+  color: #f0f0f0;
+}
+
+html.dark-mode .booking-close {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #f0f0f0;
+}
+
+html.dark-mode .booking-close:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+html.dark-mode .booking-eyebrow {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+html.dark-mode .booking-title,
+html.dark-mode .booking-success-title {
+  color: #f0f0f0;
+}
+
+html.dark-mode .booking-subtitle,
+html.dark-mode .booking-success-msg {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html.dark-mode .bf-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+html.dark-mode .bf-input {
+  color: #f0f0f0;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+
+html.dark-mode .bf-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+html.dark-mode .bf-input:focus {
+  border-bottom-color: #f0f0f0;
+}
+
+html.dark-mode .bf-textarea {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+html.dark-mode .bf-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f0f0f0' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-color: transparent;
+}
+
+html.dark-mode .bf-select option {
+  background: #1a1a1a;
+  color: #f0f0f0;
+}
+
+html.dark-mode .bf-submit {
+  background: #f0f0f0;
+  color: #000;
+  border-color: #f0f0f0;
+}
+
+html.dark-mode .bf-submit:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+/* canvas visualiser has no CSS colour overrides — colours drawn in JS */
