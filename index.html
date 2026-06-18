@@ -11,8 +11,30 @@
   <!-- Sticky header — slides down after scrolling past the hero -->
   <header class="sticky-header" id="sticky-header" aria-hidden="true">
     <a class="sticky-logo" href="#top" aria-label="LAST CALL home">
-      <img class="logo-img" src="assets/logo-new.png" alt="LAST CALL — Lights Out">
+      <span class="sticky-logo-text">LAST CALL</span>
     </a>
+    <div class="sticky-header-socials" aria-label="Follow Last Call">
+      <a class="sticky-social-link" id="sticky-soundcloud" href="#" target="_blank" rel="noopener noreferrer" aria-label="LAST CALL on SoundCloud">
+        <svg class="sticky-social-icon sticky-social-icon-sc" viewBox="0 0 48 24" aria-hidden="true">
+          <g class="sticky-sc-bars">
+            <rect x="2" y="13" width="2" height="6" rx="1"/>
+            <rect x="6" y="10" width="2" height="9" rx="1"/>
+            <rect x="10" y="6" width="2" height="13" rx="1"/>
+            <rect x="14" y="9" width="2" height="10" rx="1"/>
+            <rect x="18" y="4" width="2" height="15" rx="1"/>
+            <rect x="22" y="11" width="2" height="8" rx="1"/>
+          </g>
+          <path class="sticky-sc-cloud" d="M27 19V8.5a5.5 5.5 0 0 1 10.7-1.8A4.5 4.5 0 0 1 43.5 19H27z"/>
+        </svg>
+      </a>
+      <a class="sticky-social-link" id="sticky-instagram" href="#" target="_blank" rel="noopener noreferrer" aria-label="LAST CALL on Instagram">
+        <svg class="sticky-social-icon sticky-social-icon-ig" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.4" cy="6.6" r="1.2"/>
+        </svg>
+      </a>
+    </div>
   </header>
 
   <!-- Theme toggle — always fixed, outside the scaled page -->
@@ -215,15 +237,16 @@
 
 
       <!-- About -->
-      <div class="about-bg abs" id="about"></div>
+      <div class="about-bg abs" aria-hidden="true"></div>
 
       <!-- About content: Josh sketch + bio panel -->
-      <div class="about-stack abs">
+      <div class="about-stack abs" id="about">
         <div class="josh-sketch abs" aria-hidden="true">
           <img src="assets/josh-sketch.png" alt="DJ Josh Wasielewski">
         </div>
 
         <div class="about-panel abs">
+        <p class="about-kicker">About Last Call</p>
         <div class="about-panel-header">
           <div class="about-headline">
             <h2 class="about-brand-heading">LAST<br>CALL</h2>
@@ -273,15 +296,28 @@
           <button class="about-btn about-btn-solid book-now-btn" id="about-book" type="button">Book Now!!!</button>
         </div>
 
-        <div class="about-socials">
-          <a class="social-link" href="#top" aria-label="Home">
-            <img src="assets/house-icon.png" alt="">
+        <div class="about-socials" aria-label="Follow Last Call">
+          <a class="about-social-link" id="about-soundcloud" href="#" target="_blank" rel="noopener noreferrer" aria-label="SoundCloud">
+            <svg class="about-social-icon about-social-icon-sc" viewBox="0 0 48 24" aria-hidden="true">
+              <g class="about-sc-bars">
+                <rect x="2" y="13" width="2" height="6" rx="1"/>
+                <rect x="6" y="10" width="2" height="9" rx="1"/>
+                <rect x="10" y="6" width="2" height="13" rx="1"/>
+                <rect x="14" y="9" width="2" height="10" rx="1"/>
+                <rect x="18" y="4" width="2" height="15" rx="1"/>
+                <rect x="22" y="11" width="2" height="8" rx="1"/>
+              </g>
+              <path class="about-sc-cloud" d="M27 19V8.5a5.5 5.5 0 0 1 10.7-1.8A4.5 4.5 0 0 1 43.5 19H27z"/>
+            </svg>
+            <span>SoundCloud</span>
           </a>
-          <a class="social-link" id="about-soundcloud" href="#" target="_blank" rel="noopener noreferrer" aria-label="SoundCloud">
-            <img src="assets/soundcloud-icon.png" alt="">
-          </a>
-          <a class="social-link" id="about-instagram" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <img src="assets/instagram-icon.png" alt="">
+          <a class="about-social-link" id="about-instagram" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="about-social-icon about-social-icon-ig" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.4" cy="6.6" r="1.2"/>
+            </svg>
+            <span>Instagram</span>
           </a>
         </div>
       </div>

@@ -920,22 +920,27 @@ html.dark-mode .theme-icon-moon {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
   z-index: 9998;
   display: flex;
   align-items: center;
-  padding: 0 72px 0 28px;
-  /* right padding avoids toggle overlap */
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 76px;
+  padding:
+    calc(10px + env(safe-area-inset-top, 0px))
+    24px
+    10px
+    28px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  /* Slide up off-screen by default */
   transform: translateY(-100%);
   transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
     background 0.3s ease,
     border-color 0.3s ease;
   pointer-events: none;
+  overflow: visible;
 }
 
 .sticky-header.is-visible {
@@ -943,17 +948,82 @@ html.dark-mode .theme-icon-moon {
   pointer-events: auto;
 }
 
-/* Compact logo inside sticky header */
 .sticky-logo {
   display: flex;
   align-items: center;
+  flex: 0 1 auto;
+  min-width: 0;
   text-decoration: none;
 }
 
-.sticky-logo .logo-img {
-  height: 54px;
-  width: auto;
+.sticky-logo-text {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  color: #000;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.sticky-header-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.sticky-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sticky-social-link:hover,
+.sticky-social-link:focus-visible {
+  transform: translateY(-1px) scale(1.04);
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  outline: none;
+}
+
+.sticky-social-icon {
   display: block;
+  flex: 0 0 auto;
+}
+
+.sticky-social-icon-sc {
+  width: 24px;
+  height: 14px;
+}
+
+.sticky-sc-bars rect,
+.sticky-sc-cloud {
+  fill: #000;
+}
+
+.sticky-social-icon-ig {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #000;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sticky-social-icon-ig circle:last-child {
+  fill: #000;
+  stroke: none;
 }
 
 /* Arrow row — invisible on desktop (arrows are abs positioned); flex row on mobile */
@@ -1712,10 +1782,58 @@ html.dark-mode .theme-icon-moon {
   border-top: 1.5px solid rgba(0, 0, 0, 0.18);
 }
 
-.about-socials .social-link img {
+.about-kicker {
+  display: none;
+}
+
+.about-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #000;
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.about-social-link span {
+  display: none;
+}
+
+.about-social-link:hover,
+.about-social-link:focus-visible {
+  opacity: 0.75;
+  transform: scale(1.06);
+  outline: none;
+}
+
+.about-social-icon {
   display: block;
-  height: 28px;
-  width: auto;
+  flex: 0 0 auto;
+}
+
+.about-social-icon-sc {
+  width: 32px;
+  height: 16px;
+}
+
+.about-sc-bars rect,
+.about-sc-cloud {
+  fill: #000;
+}
+
+.about-social-icon-ig {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: #000;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.about-social-icon-ig circle:last-child {
+  fill: #000;
+  stroke: none;
 }
 
 .social-link {
@@ -2074,13 +2192,24 @@ html.dark-mode .theme-icon-moon {
    their own adjustments since they sit outside the scale wrapper.
    ========================================================================== */
 @media (max-width: 1024px) {
-  /* Sticky header: tighten right padding so theme toggle doesn't clip */
   .sticky-header {
-    height: 52px;
-    padding: 0 60px 0 20px;
+    min-height: 68px;
+    padding:
+      calc(8px + env(safe-area-inset-top, 0px))
+      20px
+      8px
+      20px;
   }
 
-  .sticky-logo .logo-img { height: 46px; }
+  .sticky-logo-text {
+    font-size: 18px;
+    letter-spacing: 0.12em;
+  }
+
+  .sticky-social-link {
+    width: 38px;
+    height: 38px;
+  }
 
   /* Theme toggle: nudge slightly closer to edge */
   .theme-toggle {
@@ -2138,11 +2267,37 @@ html.dark-mode .theme-icon-moon {
 
   /* ---- STICKY HEADER (fixed, lives outside scaled wrapper) ---- */
   .sticky-header {
-    height: 50px !important;
-    padding: 0 56px 0 16px !important;
+    min-height: 64px !important;
+    padding:
+      calc(8px + env(safe-area-inset-top, 0px))
+      16px
+      8px
+      16px !important;
   }
 
-  .sticky-logo .logo-img { height: 38px !important; }
+  .sticky-logo-text {
+    font-size: 17px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .sticky-header-socials {
+    gap: 8px !important;
+  }
+
+  .sticky-social-link {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .sticky-social-icon-sc {
+    width: 22px !important;
+    height: 13px !important;
+  }
+
+  .sticky-social-icon-ig {
+    width: 18px !important;
+    height: 18px !important;
+  }
 
   /* ---- LOGO ---- */
   .logo {
@@ -2152,7 +2307,7 @@ html.dark-mode .theme-icon-moon {
     justify-content: center !important;
   }
 
-  .logo-img {
+  .logo .logo-img {
     height: 230px !important;
   }
 
@@ -2423,7 +2578,7 @@ html.dark-mode .theme-icon-moon {
     justify-content: center !important;
     width: 200px !important;
     height: 240px !important;
-    margin: 40px auto -24px !important;
+    margin: -160px auto -24px !important;
     position: relative !important;
     z-index: 6 !important;
     pointer-events: none !important;
@@ -2438,8 +2593,12 @@ html.dark-mode .theme-icon-moon {
   }
 
   /* About stack — Josh image + bio panel as one full-width block */
+  #about {
+    scroll-margin-top: calc(84px + env(safe-area-inset-top, 0px));
+  }
+
   .about-stack {
-    width: 100% !important;
+    width: calc(100% - 32px) !important;
     height: auto !important;
     top: auto !important;
     left: auto !important;
@@ -2447,10 +2606,10 @@ html.dark-mode .theme-icon-moon {
     flex-direction: column !important;
     gap: 0 !important;
     padding: 0 !important;
-    margin: 0 0 20px !important;
+    margin: 0 16px 28px !important;
     z-index: 4 !important;
     border: 2px solid #000;
-    box-shadow: 4px 4px 0 #000;
+    box-shadow: 6px 6px 0 #000;
     overflow: hidden;
     background: #fff;
   }
@@ -2495,66 +2654,120 @@ html.dark-mode .theme-icon-moon {
     border: none !important;
     box-shadow: none !important;
     background: #fff !important;
-    padding: 24px 18px 28px !important;
+    padding: 28px 22px 32px !important;
     margin: 0 !important;
   }
 
+  .about-kicker {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.48);
+    margin: 0 0 14px;
+  }
+
   .about-panel-header {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px 12px !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 4px !important;
+    border-bottom: 1.5px solid #000 !important;
+  }
+
+  .about-headline {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
   }
 
   .about-brand-heading {
-    font-size: 52px !important;
+    font-size: clamp(44px, 13vw, 52px) !important;
     line-height: 0.82 !important;
-    padding: 0 0 8px !important;
+    padding: 0 !important;
+    letter-spacing: 0.04em !important;
     text-align: left;
   }
 
   .about-eyebrow {
-    font-size: 10px !important;
-    letter-spacing: 0.18em !important;
+    font-size: 9px !important;
+    letter-spacing: 0.16em !important;
+    line-height: 1.4 !important;
   }
 
   .about-status {
-    align-self: flex-start !important;
+    align-self: auto !important;
+    flex-shrink: 0 !important;
     margin-top: 0 !important;
+    font-size: 9px !important;
+    padding: 6px 10px !important;
   }
 
   .soundwave-panel {
-    max-width: 100% !important;
-    margin: 10px 0 14px !important;
+    max-width: 280px !important;
+    margin: 16px auto 18px !important;
+    opacity: 1 !important;
+    display: block !important;
   }
 
   .about-text {
     font-size: 15px !important;
-    line-height: 1.6 !important;
+    line-height: 1.65 !important;
+    margin-bottom: 20px !important;
   }
 
   .about-stats {
     grid-template-columns: repeat(3, 1fr) !important;
-    padding: 12px 0 !important;
-    gap: 4px !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    border: 1.5px solid #000 !important;
+    border-radius: 10px !important;
+    padding: 16px 8px !important;
+    margin: 0 0 18px !important;
+    gap: 0 !important;
+  }
+
+  .about-stats li {
+    border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+    padding: 0 4px !important;
+  }
+
+  .about-stats li:last-child {
+    border-right: none !important;
   }
 
   .about-stat-num {
-    font-size: 24px !important;
+    font-size: 26px !important;
   }
 
   .about-stat-label {
-    font-size: 8px !important;
+    font-size: 7px !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1.35 !important;
+  }
+
+  .about-tags {
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    margin-bottom: 22px !important;
   }
 
   .about-tags li {
     font-size: 9px !important;
-    padding: 4px 10px !important;
+    padding: 6px 12px !important;
   }
 
   .about-actions {
-    flex-direction: column-reverse !important;
-    gap: 10px !important;
+    flex-direction: column !important;
+    gap: 12px !important;
     align-items: stretch !important;
+    margin-bottom: 0 !important;
+  }
+
+  .book-now-btn {
+    order: -1 !important;
   }
 
   .about-btn,
@@ -2565,14 +2778,63 @@ html.dark-mode .theme-icon-moon {
     width: 100% !important;
     text-align: center !important;
     justify-content: center !important;
-    padding: 12px 20px !important;
+    padding: 14px 20px !important;
   }
 
   .about-socials {
-    margin-top: 20px !important;
-    justify-content: center;
-    border-top: none !important;
-    padding-top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    margin-top: 24px !important;
+    justify-content: stretch !important;
+    border-top: 1.5px solid #000 !important;
+    padding-top: 20px !important;
+  }
+
+  .about-social-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    border: 1.5px solid #000 !important;
+    border-radius: 999px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .about-social-link span {
+    display: inline !important;
+  }
+
+  .about-social-link:hover,
+  .about-social-link:focus-visible {
+    background: #000 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .about-social-link:hover .about-sc-bars rect,
+  .about-social-link:hover .about-sc-cloud,
+  .about-social-link:focus-visible .about-sc-bars rect,
+  .about-social-link:focus-visible .about-sc-cloud {
+    fill: #fff;
+  }
+
+  .about-social-link:hover .about-social-icon-ig,
+  .about-social-link:focus-visible .about-social-icon-ig {
+    stroke: #fff;
+  }
+
+  .about-social-link:hover .about-social-icon-ig circle:last-child,
+  .about-social-link:focus-visible .about-social-icon-ig circle:last-child {
+    fill: #fff;
   }
 
   /* ---- FOOTER ---- */
@@ -3239,13 +3501,62 @@ html.dark-mode .about-socials {
   border-top-color: rgba(255, 255, 255, 0.18);
 }
 
+html.dark-mode .about-social-link {
+  color: #f0f0f0;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+html.dark-mode .about-sc-bars rect,
+html.dark-mode .about-sc-cloud {
+  fill: #f0f0f0;
+}
+
+html.dark-mode .about-social-icon-ig {
+  stroke: #f0f0f0;
+}
+
+html.dark-mode .about-social-icon-ig circle:last-child {
+  fill: #f0f0f0;
+}
+
+html.dark-mode .about-kicker {
+  color: rgba(255, 255, 255, 0.45);
+}
+
 /* ── Sticky header in dark mode ── */
 html.dark-mode .sticky-header {
   background: rgba(0, 0, 0, 0.92);
   border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* sticky logo inherits .logo-img dark mode rule above */
+html.dark-mode .sticky-logo-text {
+  color: #f0f0f0;
+}
+
+html.dark-mode .sticky-social-link {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html.dark-mode .sticky-social-link:hover,
+html.dark-mode .sticky-social-link:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+html.dark-mode .sticky-sc-bars rect,
+html.dark-mode .sticky-sc-cloud {
+  fill: #fff;
+}
+
+html.dark-mode .sticky-social-icon-ig {
+  stroke: #fff;
+}
+
+html.dark-mode .sticky-social-icon-ig circle:last-child {
+  fill: #fff;
+}
 
 /* ── Toggle button in dark mode ── */
 html.dark-mode .theme-toggle {
@@ -3349,9 +3660,37 @@ html.dark-mode .section-title-popular:focus-visible {
   text-shadow: 0 6px 28px rgba(255, 255, 255, 0.12);
 }
 
-/* ── Social icons inside about panel (if black) ── */
-html.dark-mode .about-socials .social-link img {
-  filter: invert(1);
+/* ── About social links in dark mode (mobile pill buttons) ── */
+html.dark-mode .about-social-link:hover,
+html.dark-mode .about-social-link:focus-visible {
+  background: #f0f0f0;
+  color: #000;
+  border-color: #f0f0f0;
+}
+
+html.dark-mode .about-social-link:hover .about-sc-bars rect,
+html.dark-mode .about-social-link:hover .about-sc-cloud,
+html.dark-mode .about-social-link:focus-visible .about-sc-bars rect,
+html.dark-mode .about-social-link:focus-visible .about-sc-cloud {
+  fill: #000;
+}
+
+html.dark-mode .about-social-link:hover .about-social-icon-ig,
+html.dark-mode .about-social-link:focus-visible .about-social-icon-ig {
+  stroke: #000;
+}
+
+html.dark-mode .about-social-link:hover .about-social-icon-ig circle:last-child,
+html.dark-mode .about-social-link:focus-visible .about-social-icon-ig circle:last-child {
+  fill: #000;
+}
+
+html.dark-mode .about-stats {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+html.dark-mode .about-panel-header {
+  border-bottom-color: rgba(255, 255, 255, 0.35) !important;
 }
 
 /* ── Booking modal ── */

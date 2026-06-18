@@ -276,6 +276,7 @@ function initLinks() {
     'footer-soundcloud-box',
     'footer-soundcloud-icon',
     'footer-mixes',
+    'sticky-soundcloud',
   ];
 
   soundcloudLinks.forEach((id) => {
@@ -287,6 +288,8 @@ function initLinks() {
   document.getElementById('about-latest-mix').href = SITE_LINKS.latestMix;
   document.getElementById('about-instagram').href = SITE_LINKS.instagram;
   document.getElementById('footer-instagram').href = SITE_LINKS.instagram;
+  const stickyInstagram = document.getElementById('sticky-instagram');
+  if (stickyInstagram) stickyInstagram.href = SITE_LINKS.instagram;
   const footerIgLabel = document.getElementById('footer-instagram-label');
   if (footerIgLabel) footerIgLabel.href = SITE_LINKS.instagram;
   const igFab = document.getElementById('ig-fab');
