@@ -2617,10 +2617,10 @@ html.dark-mode .theme-icon-moon {
   .josh-sketch {
     order: 1;
     width: 100% !important;
-    aspect-ratio: auto !important;
-    height: clamp(300px, 88vw, 380px) !important;
-    min-height: 300px !important;
-    max-height: 380px !important;
+    aspect-ratio: 768 / 1369 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
     margin: 0 !important;
     overflow: hidden;
     transform: none !important;
@@ -2630,18 +2630,15 @@ html.dark-mode .theme-icon-moon {
     background: #fff !important;
     position: relative !important;
     z-index: 3 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 12px 16px !important;
+    display: block !important;
+    padding: 0 !important;
   }
 
   .josh-sketch img {
-    width: auto !important;
+    width: 100% !important;
     height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-fit: contain !important;
+    max-width: none !important;
+    object-fit: cover !important;
     object-position: center center !important;
     position: static !important;
     top: auto !important;
@@ -2712,10 +2709,7 @@ html.dark-mode .theme-icon-moon {
   }
 
   .soundwave-panel {
-    max-width: 280px !important;
-    margin: 16px auto 18px !important;
-    opacity: 1 !important;
-    display: block !important;
+    display: none !important;
   }
 
   .about-text {
