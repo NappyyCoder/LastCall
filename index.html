@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>LAST CALL — Josh Wasielewski</title>
+  <title>LAST CALL · Josh Wasielewski</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,13 +11,7 @@
   <!-- Sticky header — slides down after scrolling past the hero -->
   <header class="sticky-header" id="sticky-header" aria-hidden="true">
     <a class="sticky-logo" href="#top" aria-label="LAST CALL home">
-      <div class="logo-composite">
-        <img class="logo-bars" src="assets/logo-bars.svg" alt="">
-        <div class="logo-wordmark">
-          <img class="logo-text" src="assets/logo-text.svg" alt="LAST CALL">
-          <img class="logo-tagline-img" src="assets/logo-tagline.svg" alt="Answer the Frequency">
-        </div>
-      </div>
+      <img class="logo-img" src="assets/logo-new.png" alt="LAST CALL — Lights Out">
     </a>
   </header>
 
@@ -45,14 +39,50 @@
 
       <!-- Header -->
       <a class="logo abs" href="#top" aria-label="LAST CALL home">
-        <div class="logo-composite">
-          <img class="logo-bars" src="assets/logo-bars.svg" alt="">
-          <div class="logo-wordmark">
-            <img class="logo-text" src="assets/logo-text.svg" alt="LAST CALL">
-            <img class="logo-tagline-img" src="assets/logo-tagline.svg" alt="Answer the Frequency">
-          </div>
-        </div>
+        <img class="logo-img" src="assets/logo-new.png" alt="LAST CALL — Lights Out">
       </a>
+
+      <!-- Social links — under logo, top-left -->
+      <div class="social-fab-stack abs">
+        <a
+          class="social-fab sc-fab"
+          id="sc-fab"
+          href="https://soundcloud.com/last-call-431091673"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow LAST CALL on SoundCloud"
+        >
+          <svg class="social-fab-icon sc-fab-logo" viewBox="0 0 48 24" aria-hidden="true">
+            <g class="sc-fab-bars">
+              <rect x="2"  y="13" width="2" height="6"  rx="1"/>
+              <rect x="6"  y="10" width="2" height="9"  rx="1"/>
+              <rect x="10" y="6"  width="2" height="13" rx="1"/>
+              <rect x="14" y="9"  width="2" height="10" rx="1"/>
+              <rect x="18" y="4"  width="2" height="15" rx="1"/>
+              <rect x="22" y="11" width="2" height="8"  rx="1"/>
+            </g>
+            <path class="sc-fab-cloud" d="M27 19V8.5a5.5 5.5 0 0 1 10.7-1.8A4.5 4.5 0 0 1 43.5 19H27z"/>
+          </svg>
+          <span class="social-fab-label">SoundCloud</span>
+        </a>
+
+        <a
+          class="social-fab ig-fab"
+          id="ig-fab"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow LAST CALL on Instagram"
+        >
+          <svg class="social-fab-icon ig-fab-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.4" cy="6.6" r="1.2"/>
+          </svg>
+          <span class="social-fab-label">Instagram</span>
+        </a>
+      </div>
+
       <!-- Search border pill (Figma node 80:42) -->
       <div class="search-border-pill abs" aria-hidden="true"></div>
 
@@ -138,7 +168,7 @@
       </iframe>
 
       <!-- Most Popular -->
-      <p class="section-title section-title-popular abs">MOST POPULAR</p>
+      <h2 class="section-title section-title-popular abs" id="popular-heading" tabindex="0">Most Popular Tracks</h2>
 
       <div class="carousel-viewport popular-viewport abs">
         <div class="carousel-track" id="popular-track" data-carousel="popular"></div>
@@ -184,13 +214,13 @@
       <!-- About -->
       <div class="about-bg abs" id="about"></div>
 
-      <!-- Josh sketch -->
-      <div class="josh-sketch abs" aria-hidden="true">
-        <img src="assets/josh-sketch.png" alt="DJ Josh Wasielewski">
-      </div>
+      <!-- About content: Josh sketch + bio panel -->
+      <div class="about-stack abs">
+        <div class="josh-sketch abs" aria-hidden="true">
+          <img src="assets/josh-sketch.png" alt="DJ Josh Wasielewski">
+        </div>
 
-      <!-- About right panel — enhanced bio with stats, genres, latest mix CTA -->
-      <div class="about-panel abs">
+        <div class="about-panel abs">
         <div class="about-panel-header">
           <div class="about-headline">
             <h2 class="about-brand-heading">LAST<br>CALL</h2>
@@ -205,7 +235,7 @@
         <img class="soundwave-panel" src="assets/soundwave-about.png" alt="" aria-hidden="true">
 
         <p class="about-text">
-          Josh <em>“Last Call”</em> Wasielewski takes the room from <strong>last orders</strong> to <strong>one more track</strong>. Rolling house grooves, tech-house heat, and basslines built for the dead-of-night — every set engineered for the moment the lights stay off and the floor refuses to quit.
+          Josh Wasielewski is <em>Last Call</em>, a DJ and producer based at Purdue spinning house, tech house, and bass for rooms that are not ready to go home. He reads the crowd, builds momentum track by track, and turns <strong>last call</strong> into <strong>one more track</strong>. If you want a set that hits hard, stays smooth, and keeps the floor moving until the lights come up, you are in the right place.
         </p>
 
         <ul class="about-stats" aria-label="Career highlights">
@@ -227,7 +257,7 @@
           <li>HOUSE</li>
           <li>TECH HOUSE</li>
           <li>BASS</li>
-          <li>OPEN-FORMAT</li>
+          <li>OPEN FORMAT</li>
         </ul>
 
         <div class="about-actions">
@@ -252,60 +282,85 @@
           </a>
         </div>
       </div>
+      </div>
 
       <!-- Footer -->
-      <div class="footer-bg abs"></div>
+      <footer class="site-footer abs" aria-label="Site footer">
+        <div class="footer-inner">
+          <div class="footer-col footer-col-brand">
+            <a class="footer-logo-link" href="#top" aria-label="LAST CALL home">
+              <img class="footer-logo-img" src="assets/logo-new.png" alt="LAST CALL Lights Out">
+            </a>
+            <p class="footer-brand-tagline">House · Tech House · Purdue</p>
+            <div class="footer-social-row">
+              <a class="footer-social-soundcloud social-link" id="footer-soundcloud-icon" href="#" target="_blank" rel="noopener noreferrer" aria-label="LAST CALL on SoundCloud">
+                <svg class="footer-social-icon footer-social-icon-sc" viewBox="0 0 48 24" aria-hidden="true">
+                  <g class="footer-sc-bars">
+                    <rect x="2"  y="13" width="2" height="6"  rx="1"/>
+                    <rect x="6"  y="10" width="2" height="9"  rx="1"/>
+                    <rect x="10" y="6"  width="2" height="13" rx="1"/>
+                    <rect x="14" y="9"  width="2" height="10" rx="1"/>
+                    <rect x="18" y="4"  width="2" height="15" rx="1"/>
+                    <rect x="22" y="11" width="2" height="8"  rx="1"/>
+                  </g>
+                  <path class="footer-sc-cloud" d="M27 19V8.5a5.5 5.5 0 0 1 10.7-1.8A4.5 4.5 0 0 1 43.5 19H27z"/>
+                </svg>
+              </a>
+              <a class="footer-social-instagram social-link" id="footer-instagram" href="#" target="_blank" rel="noopener noreferrer" aria-label="LAST CALL on Instagram">
+                <svg class="footer-social-icon footer-social-icon-ig" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4.2"/>
+                  <circle cx="17.4" cy="6.6" r="1.2"/>
+                </svg>
+              </a>
+            </div>
+          </div>
 
-      <div class="footer-brand abs">
-        <span>LAST</span><br>
-        <span class="footer-brand-call">CALL</span>
-      </div>
+          <div class="footer-col footer-col-nav">
+            <p class="footer-col-title">Navigate</p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+              <a class="footer-link footer-link-home" href="#top">Home</a>
+              <a class="footer-link footer-link-mixes" id="footer-mixes" href="#">Mixes &amp; Tracks</a>
+              <a class="footer-link footer-link-shows" href="#shows">Upcoming Shows</a>
+              <a class="footer-link footer-link-about" href="#about">About Last Call</a>
+            </nav>
+          </div>
 
-      <a class="footer-soundcloud-label abs footer-link-block" id="footer-soundcloud-label" href="#" target="_blank" rel="noopener noreferrer">
-        OFFICIAL<br>
-        SOUNDCLOUD
-      </a>
+          <div class="footer-col footer-col-booking">
+            <p class="footer-col-title">Booking</p>
+            <nav class="footer-nav" aria-label="Booking links">
+              <a class="footer-link footer-link-book" id="footer-book" href="mailto:booking@lastcall.dj?subject=Book%20a%20Set">Book a Set</a>
+              <a class="footer-link footer-link-residencies" id="footer-residencies" href="mailto:booking@lastcall.dj?subject=Residency%20Inquiry">Residencies</a>
+              <a class="footer-link footer-link-events" id="footer-events" href="mailto:booking@lastcall.dj?subject=Private%20Event%20Inquiry">Private Events</a>
+            </nav>
+          </div>
 
-      <p class="footer-nav-title abs">NAVITGATE</p>
-      <a class="footer-link footer-link-home abs" href="#top">Home</a>
-      <a class="footer-link footer-link-mixes abs" id="footer-mixes" href="#">Mixes &amp; Tracks</a>
-      <a class="footer-link footer-link-shows abs" href="#shows">Upcoming Shows</a>
-      <a class="footer-link footer-link-about abs" href="#about">About Last Call</a>
+          <div class="footer-col footer-col-listen">
+            <p class="footer-col-title">Listen Now</p>
+            <a class="footer-listen-card" id="footer-soundcloud-box" href="#" target="_blank" rel="noopener noreferrer" aria-label="LAST CALL on SoundCloud">
+              <span class="footer-listen-card-top">
+                <span class="footer-listen-badge">Official</span>
+                <span class="footer-listen-arrow" aria-hidden="true">→</span>
+              </span>
+              <span class="footer-listen-card-title" id="footer-sc-title">LAST CALL on SoundCloud</span>
+              <span class="footer-listen-card-sub" id="footer-sc-sub">Follow &amp; stream all sets</span>
+            </a>
+            <a class="footer-mix-drop footer-link-block" id="footer-mix-drop" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="footer-mix-drop-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              Latest Mix Drop
+            </a>
+            <a class="footer-brand-link footer-link-block" id="footer-soundcloud-label" href="#" target="_blank" rel="noopener noreferrer">Open SoundCloud Profile</a>
+            <a class="footer-brand-link footer-link-block" id="footer-instagram-label" href="#" target="_blank" rel="noopener noreferrer">Follow on Instagram</a>
+          </div>
+        </div>
 
-      <p class="footer-booking-title abs">BOOKING</p>
-      <a class="footer-link footer-link-book abs" id="footer-book" href="mailto:booking@lastcall.dj?subject=Book%20a%20Set">Book a Set</a>
-      <a class="footer-link footer-link-residencies abs" id="footer-residencies" href="mailto:booking@lastcall.dj?subject=Residency%20Inquiry">Residencies</a>
-      <a class="footer-link footer-link-events abs" id="footer-events" href="mailto:booking@lastcall.dj?subject=Private%20Event%20Inquiry">Private Events</a>
-
-      <p class="footer-listen-title abs">LISTEN NOW</p>
-      <a class="footer-soundcloud-box abs" id="footer-soundcloud-box" href="#" target="_blank" rel="noopener noreferrer" aria-label="LAST CALL on SoundCloud"></a>
-      <a class="footer-soundcloud-box-title abs footer-link-block" id="footer-sc-title" href="#" target="_blank" rel="noopener noreferrer">
-        LAST CALL<br>
-        on<br>
-        SoundCloud
-      </a>
-      <a class="footer-soundcloud-box-sub abs footer-link-block" id="footer-sc-sub" href="#" target="_blank" rel="noopener noreferrer">Follow &amp; stream all sets</a>
-      <a class="footer-mix-drop abs footer-link-block" id="footer-mix-drop" href="#" target="_blank" rel="noopener noreferrer">Latest Mix Drop</a>
-
-      <a class="footer-social-home abs social-link" href="#top" aria-label="Home">
-        <img src="assets/house-icon-white.png" alt="">
-      </a>
-      <a class="footer-social-soundcloud abs social-link" id="footer-soundcloud-icon" href="#" target="_blank" rel="noopener noreferrer" aria-label="SoundCloud">
-        <img src="assets/soundcloud-icon-white.png" alt="">
-      </a>
-      <a class="footer-social-instagram abs social-link" id="footer-instagram" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <img src="assets/instagram-icon-white.png" alt="">
-      </a>
-
-      <div class="footer-divider abs">
-        <img src="assets/footer-divider.png" alt="">
-      </div>
-
-      <div class="footer-copyright-icon abs">
-        <img src="assets/copyright-icon.png" alt="">
-      </div>
-      <p class="footer-copyright abs">2026 LAST CALL. All rights reserved.</p>
-      <p class="footer-tagline abs">ONE MORE TRACK.  ALWAYS.</p>
+        <div class="footer-bottom">
+          <p class="footer-copyright">© 2026 LAST CALL. All rights reserved.</p>
+          <p class="footer-tagline">ONE MORE TRACK. ALWAYS.</p>
+        </div>
+      </footer>
 
       <div class="abs" id="shows" aria-hidden="true"></div>
 

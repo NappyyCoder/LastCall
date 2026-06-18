@@ -95,6 +95,49 @@ const CAROUSEL_STATE = {
 };
 
 const SLIDE_WIDTH = 280; /* 220px card + 60px gap */
+const MOBILE_SLIDE_STEP = 185; /* 165px card + 20px gap */
+
+function isMobileLayout() {
+  return document.body.classList.contains('is-mobile') || window.innerWidth < 768;
+}
+
+function getCarouselViewport(name) {
+  return document.getElementById(`${name}-track`)?.closest('.carousel-viewport');
+}
+
+function updateCarousel(name) {
+  const state = CAROUSEL_STATE[name];
+  const trackEl = document.getElementById(`${name}-track`);
+  const viewportEl = getCarouselViewport(name);
+  const mobile = isMobileLayout();
+  const maxIndex = mobile
+    ? Math.max(0, TRACKS[name].length - 1)
+    : Math.max(0, TRACKS[name].length - state.visible);
+
+  state.index = Math.min(Math.max(state.index, 0), maxIndex);
+
+  if (mobile && trackEl && viewportEl) {
+    trackEl.style.transform = '';
+    const slide = trackEl.children[state.index];
+    if (slide) {
+      viewportEl.scrollTo({
+        left: slide.offsetLeft - viewportEl.offsetLeft,
+        behavior: 'smooth',
+      });
+    }
+  } else if (trackEl) {
+    trackEl.style.transform = `translateX(${-state.index * SLIDE_WIDTH}px)`;
+  }
+
+  document.querySelector(`[data-carousel-prev="${name}"]`).disabled = state.index === 0;
+  document.querySelector(`[data-carousel-next="${name}"]`).disabled = state.index === maxIndex;
+}
+
+function resetCarouselTransforms() {
+  document.querySelectorAll('.carousel-track').forEach((track) => {
+    track.style.transform = '';
+  });
+}
 
 function createSlide(track, section) {
   const slide = document.createElement('article');
@@ -145,18 +188,6 @@ function renderCarousel(name) {
     trackEl.appendChild(createSlide(track, name));
   });
   updateCarousel(name);
-}
-
-function updateCarousel(name) {
-  const state = CAROUSEL_STATE[name];
-  const maxIndex = Math.max(0, TRACKS[name].length - state.visible);
-  state.index = Math.min(Math.max(state.index, 0), maxIndex);
-
-  const trackEl = document.getElementById(`${name}-track`);
-  trackEl.style.transform = `translateX(${-state.index * SLIDE_WIDTH}px)`;
-
-  document.querySelector(`[data-carousel-prev="${name}"]`).disabled = state.index === 0;
-  document.querySelector(`[data-carousel-next="${name}"]`).disabled = state.index === maxIndex;
 }
 
 function initVinylPop() {
@@ -230,16 +261,19 @@ function initCarousels() {
     });
   });
 
-  addTouchSwipe(document.querySelector('.popular-viewport'), 'popular');
+  if (!isMobileLayout()) {
+    addTouchSwipe(document.querySelector('.popular-viewport'), 'popular');
+  } else {
+    resetCarouselTransforms();
+  }
 }
 
 function initLinks() {
   const soundcloudLinks = [
+    'sc-fab',
     'about-soundcloud',
     'footer-soundcloud-label',
     'footer-soundcloud-box',
-    'footer-sc-title',
-    'footer-sc-sub',
     'footer-soundcloud-icon',
     'footer-mixes',
   ];
@@ -253,6 +287,10 @@ function initLinks() {
   document.getElementById('about-latest-mix').href = SITE_LINKS.latestMix;
   document.getElementById('about-instagram').href = SITE_LINKS.instagram;
   document.getElementById('footer-instagram').href = SITE_LINKS.instagram;
+  const footerIgLabel = document.getElementById('footer-instagram-label');
+  if (footerIgLabel) footerIgLabel.href = SITE_LINKS.instagram;
+  const igFab = document.getElementById('ig-fab');
+  if (igFab) igFab.href = SITE_LINKS.instagram;
 
   const bookingBase = `mailto:${SITE_LINKS.bookingEmail}`;
   document.getElementById('about-book').href = `${bookingBase}?subject=Book%20a%20Set`;
@@ -697,7 +735,7 @@ function initResponsiveScale() {
   const wrap = document.querySelector('.page-scale-wrap');
   const page = document.querySelector('.page');
   const designWidth = 1728;
-  const designHeight = 2284;
+  const designHeight = 2380;
 
   function applyScale() {
     const vw = document.documentElement.clientWidth;
@@ -708,6 +746,8 @@ function initResponsiveScale() {
       wrap.style.width = '';
       wrap.style.height = '';
       page.style.transform = 'none';
+      resetCarouselTransforms();
+      updateCarousel('popular');
     } else {
       document.body.classList.remove('is-mobile');
       const scale = Math.min(1, vw / designWidth);
@@ -716,6 +756,7 @@ function initResponsiveScale() {
       wrap.style.width = `${scaledWidth}px`;
       wrap.style.height = `${scaledHeight}px`;
       page.style.transform = scale === 1 ? 'none' : `scale(${scale})`;
+      updateCarousel('popular');
     }
   }
 
@@ -1027,11 +1068,41 @@ function initSoundwave() {
   };
 }
 
+/** Mobile: first tap expands a social FAB; second tap follows the link. */
+function initSocialFabs() {
+  const fabs = document.querySelectorAll('.social-fab');
+  if (!fabs.length) return;
+
+  fabs.forEach((fab) => {
+    fab.addEventListener('click', (e) => {
+      if (window.innerWidth > 767) return;
+      if (!fab.classList.contains('is-open')) {
+        e.preventDefault();
+        fabs.forEach((other) => other.classList.remove('is-open'));
+        fab.classList.add('is-open');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    fabs.forEach((fab) => {
+      if (!fab.contains(e.target)) fab.classList.remove('is-open');
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      fabs.forEach((fab) => fab.classList.remove('is-open'));
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initStickyHeader();
   initBookingModal();
   initLinks();
+  initSocialFabs();
   initCarousels();
   initPlayer();
   initSearch();
