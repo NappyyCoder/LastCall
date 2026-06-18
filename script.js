@@ -886,23 +886,28 @@ function initStickyHeader() {
 
 /* ─── Theme: dark / light mode ─── */
 function initTheme() {
-  const html    = document.documentElement;
-  const btn     = document.getElementById('theme-toggle');
-  const saved   = localStorage.getItem('lastcall-theme');
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-toggle-label');
+  const saved = localStorage.getItem('lastcall-theme');
+  const isDark = saved === 'dark';
 
-  // Respect saved preference, then OS preference
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = saved ? saved === 'dark' : prefersDark;
-
-  if (isDark) {
-    html.classList.add('dark-mode');
-    if (btn) btn.setAttribute('aria-pressed', 'true');
+  function applyTheme(dark) {
+    html.classList.toggle('dark-mode', dark);
+    if (btn) {
+      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+      btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    if (label) label.textContent = dark ? 'Light Mode' : 'Dark Mode';
   }
+
+  applyTheme(isDark);
 
   if (btn) {
     btn.addEventListener('click', () => {
-      const nowDark = html.classList.toggle('dark-mode');
-      btn.setAttribute('aria-pressed', nowDark ? 'true' : 'false');
+      btn.classList.remove('theme-toggle-hint');
+      const nowDark = !html.classList.contains('dark-mode');
+      applyTheme(nowDark);
       localStorage.setItem('lastcall-theme', nowDark ? 'dark' : 'light');
     });
   }

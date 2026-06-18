@@ -671,21 +671,78 @@ body {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #000;
+  min-width: 56px;
+  height: 56px;
+  padding: 0 18px 0 14px;
+  border-radius: 999px;
+  border: 3px solid #000;
   background: #fff;
+  color: #000;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   z-index: 99999;
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  box-shadow: 5px 5px 0 #000;
+  font-family: 'Inter', sans-serif;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.theme-toggle-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.theme-toggle-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .theme-toggle:hover {
-  transform: scale(1.1) rotate(15deg);
+  transform: translateY(-2px);
+  box-shadow: 7px 7px 0 #000;
+}
+
+.theme-toggle:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid rgba(0, 0, 0, 0.25);
+  outline-offset: 3px;
+}
+
+@keyframes theme-toggle-pulse {
+  0%, 100% {
+    box-shadow: 5px 5px 0 #000;
+  }
+
+  50% {
+    box-shadow: 5px 5px 0 #000, 0 0 0 6px rgba(0, 0, 0, 0.14);
+  }
+}
+
+.theme-toggle-hint {
+  animation: theme-toggle-pulse 1.8s ease-in-out 4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-hint {
+    animation: none;
+  }
 }
 
 /* ─── Social FAB stack — under logo, top-left (B&W) ─── */
@@ -829,8 +886,8 @@ body {
 }
 
 .theme-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
@@ -849,11 +906,11 @@ body {
 }
 
 /* Dark mode: show sun, hide moon */
-.dark-mode .theme-icon-sun {
+html.dark-mode .theme-icon-sun {
   display: block;
 }
 
-.dark-mode .theme-icon-moon {
+html.dark-mode .theme-icon-moon {
   display: none;
 }
 
@@ -2029,8 +2086,8 @@ body {
   .theme-toggle {
     bottom: 20px;
     right: 18px;
-    width: 38px;
-    height: 38px;
+    height: 52px;
+    padding: 0 16px 0 12px;
   }
 }
 
@@ -2141,8 +2198,21 @@ body {
   .theme-toggle {
     bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
     right: calc(14px + env(safe-area-inset-right, 0px)) !important;
-    width: 34px !important;
-    height: 34px !important;
+    height: 50px !important;
+    padding: 0 14px 0 12px !important;
+    gap: 8px !important;
+    border-width: 2px !important;
+    box-shadow: 4px 4px 0 #000 !important;
+  }
+
+  .theme-toggle-label {
+    font-size: 10px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .theme-icon {
+    width: 18px !important;
+    height: 18px !important;
   }
 
   .player-widget-wrap {
@@ -2905,14 +2975,16 @@ body,
 }
 
 /* ── Base backgrounds ── */
-html.dark-mode,
-html.dark-mode body,
-html.dark-mode .viewport {
-  background: #111 !important;
+html.dark-mode {
+  color-scheme: dark;
+  background: #000 !important;
 }
 
+html.dark-mode body,
+html.dark-mode .viewport,
+html.dark-mode .page-scale-wrap,
 html.dark-mode .page {
-  background: #111 !important;
+  background: #000 !important;
 }
 
 /* ── Logo: invert black SVGs to white ── */
@@ -2940,15 +3012,15 @@ html.dark-mode .vinyl-card {
 
 /* Track labels */
 html.dark-mode .carousel-label {
-  color: #fff !important;
+  color: #000 !important;
 }
 
 html.dark-mode .track-label-bold {
-  color: #fff !important;
+  color: #000 !important;
 }
 
 html.dark-mode .track-label-italic {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
   opacity: 1 !important;
 }
 
@@ -3169,7 +3241,7 @@ html.dark-mode .about-socials {
 
 /* ── Sticky header in dark mode ── */
 html.dark-mode .sticky-header {
-  background: rgba(17, 17, 17, 0.92);
+  background: rgba(0, 0, 0, 0.92);
   border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -3177,9 +3249,22 @@ html.dark-mode .sticky-header {
 
 /* ── Toggle button in dark mode ── */
 html.dark-mode .theme-toggle {
-  background: #222;
-  border-color: rgba(255, 255, 255, 0.6);
-  color: #f0f0f0;
+  background: #111;
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.85);
+}
+
+html.dark-mode .theme-toggle:hover {
+  box-shadow: 7px 7px 0 rgba(255, 255, 255, 0.85);
+}
+
+html.dark-mode .theme-toggle:active {
+  box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.85);
+}
+
+html.dark-mode .theme-toggle:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.35);
 }
 
 html.dark-mode .social-fab {
