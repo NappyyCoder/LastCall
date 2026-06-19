@@ -738,7 +738,7 @@ function initResponsiveScale() {
   const wrap = document.querySelector('.page-scale-wrap');
   const page = document.querySelector('.page');
   const designWidth = 1728;
-  const designHeight = 2380;
+  const designHeight = 2452;
 
   function applyScale() {
     const vw = document.documentElement.clientWidth;

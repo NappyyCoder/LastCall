@@ -40,7 +40,7 @@ body {
 .page {
   position: relative;
   width: 1728px;
-  height: 2380px;
+  height: 2452px;
   background: #fff;
   overflow: visible;
   transform-origin: top left;
@@ -1487,7 +1487,8 @@ html.dark-mode .theme-icon-moon {
   left: 0;
   top: 1251px;
   width: 1728px;
-  height: 689px;
+  min-height: 689px;
+  height: auto;
   z-index: 5;
 }
 
@@ -1496,6 +1497,7 @@ html.dark-mode .theme-icon-moon {
   top: 0;
   width: 828px;
   height: 689px;
+  min-height: 689px;
   z-index: 5;
   pointer-events: none;
   border: 3px solid #000;
@@ -1522,7 +1524,8 @@ html.dark-mode .theme-icon-moon {
   left: 918px;
   top: 0;
   width: 810px;
-  height: 603px;
+  min-height: 689px;
+  height: auto;
   background: #fff;
   border: 3px solid #000;
   z-index: 5;
@@ -1530,6 +1533,8 @@ html.dark-mode .theme-icon-moon {
   display: flex;
   flex-direction: column;
   gap: 0;
+  box-sizing: border-box;
+  overflow: visible;
   /* subtle paper texture using layered gradients */
   background-image:
     radial-gradient(circle at 18% 12%, rgba(0, 0, 0, 0.025) 0%, transparent 35%),
@@ -1848,7 +1853,7 @@ html.dark-mode .theme-icon-moon {
 /* Footer */
 .site-footer {
   left: 0;
-  top: 1940px;
+  top: 2012px;
   width: 1728px;
   background: #000;
   color: #fff;
